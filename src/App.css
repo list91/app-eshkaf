@@ -1,38 +1,573 @@
-.App {
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+html {
+  /* margin: 0;
+  padding: 0; */
+  font-family: Arial, sans-serif;
+  width:100%;
+  height: 100%;
+}
+* {
+box-sizing: border-box;
+}
+/* .active{
+background-color: #db2828 !important;
+} */
+/* Ваши стили для блока */
+
+
+header {
+  /* background-color: #333; */
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #33333333;
+  /* position: fixed; */
+}
+header nav {
+  display: inline-flex;
+}
+
+.header_info{
+  width: fit-content;
+}
+.header_menu{
+  display: flex;
+  align-items: center;
+}
+.header_menu .nav_button{
+  margin-right: 10px;
+  padding: 2px;
+}
+
+.nav_container nav {
+  margin-top: 35px;
+}
+
+.button_a{
+  padding: 5px;
+  text-decoration: none;
   text-align: center;
+  font-size: 18px;
+  /* color: white; */
+  display: block;
+  text-transform: uppercase;
+  color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+/* .main-content {
+  width: 400px;
+  height: 400px;
+} */
+.hidden {
+display: none;
+}
+.spinner {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+border: 8px solid #f3f3f3;
+border-top: 8px solid #3498db;
+border-radius: 50%;
+width: 50px;
+height: 50px;
+animation: spin 1s linear infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Анимация вращения */
+@keyframes spin {
+0% { transform: translate(-50%, -50%) rotate(0deg); }
+100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.App-header {
-  background-color: #282c34;
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  /* height: 100vh; */
+}
+
+.nav_container {
+  background-color: #e96b6b;
+  width: 200px;
+  padding: 4px;
+}
+.nav_container {
+  transition: opacity 0.5s ease; /* Плавное изменение прозрачности в течение 0.5 секунд */
+  opacity: 1; /* Начальное значение прозрачности */
+}
+
+.nav_container.hidden {
+  opacity: 0; /* Прозрачность при скрытии */
+  pointer-events: none; /* Запрет взаимодействия с элементом */
+  visibility: hidden; /* Скрыть элемент из потока документа */
+}
+
+
+.header_and_maincontent_container {
+  flex: 1;
+  height: 100%;
+  width: fit-content;
+}
+
+img {
+  max-width: 100%;
+  height: ato;
+  display: block;
+  margin: auto;
+}
+.nav_button a:hover {
+  text-decoration: none;
+  color: #000000;
+ }
+.nav_button{
+  /* background-color: #FFCF34; */
+  border: 2px solid #333;
+  border-radius: 15px;
+  margin: 8px;
+  min-width: 115px;
+  padding: 0px 29px;
+}
+/* .nav_button:active { */
+  /* background-color: #476e3b; */
+/* } */
+.close_btn:not(.active) {
+  background-color: #11131185;
+}
+/* .zebra_list li:focus > .nav_button:active {
+  background-color: #cc0f0f;
+} */
+
+
+.nav_settings {
+  height: 100px;
+  position: relative; /* Добавляем относительное позиционирование */
+}
+
+.nav_settings {
+  /* position: absolute; Добавляем абсолютное позиционирование */
+  bottom: 0; /* Прижимаем к низу */
+  width: 100%; /* Занимаем всю ширину */
+}
+
+.container {
+  display: flex;
   min-height: 100vh;
+}
+
+.nav_container {
+  background-color: #ffffff;
+  /* width: 20%; */
+  padding: 4px;
+  display: flex;
+  flex-direction: column; /* Располагаем дочерние элементы в столбец */
+  border: 2px solid #33333333;
+}
+
+.nav_settings {
+display: flex;
+flex-grow: 1; /* Растягиваем на всю доступную высоту */
+position: absolute;
+flex-direction: column;
+margin-bottom: 30px;
+width: fit-content;
+}
+
+.logo_container{
+  background-color: #ffffff;
+}
+.info_descr{
+  padding: 5px;
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  color: black;
+}
+.info_descr .descr_title{
+  margin-right: 5px;
+  font-size: 16px;
+}
+.descr_item{
+  text-transform: none;
+}
+.graph_block {
+  width: 300px;
+  height: 300px;
+}
+.graph {
+  width: 1200px;
+  height: 400px;
+}
+/* .graphs {
+} */
+
+#graph_container {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  /* max-height: 600px; */
+  justify-content: space-around;
+  align-content: space-between;
+  border: 2px solid #3333334b;
+}
+
+.header_graph_block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header_graph_block__buttons_block {
+  display: flex;
+}
+
+.button_graph{
+  width: 20px;
+  height: 20px;
+}
+
+.header_graph_block__title{
+  text-transform: uppercase;
+}
+
+.btn_conf_menu{
+  position: absolute;
+  margin-left: 35px;
+  transform: translateX(-100%);
+  margin-top: 25px;
+  /* width: 300px; */
+  /* height: 100px; */
+  background-color: #54d366;
+  padding: 15px;
+}
+/* .close_btn{
+  background-color: #968651;
+  cursor: none;
+} */
+
+.zebra_list {
+  list-style: none;
+  /* border-left: 10px solid #FC7574; */
+  padding: 0;
+  margin: 0;
+  /* font-family: "Lucida Sans"; */
+}
+.zebra_list li {
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e1e1e1;
+}
+.zebra_list li:nth-child(odd):not(.active) {background: #D9D9D9;}
+.zebra_list li:nth-child(even):not(.active) {background: white;}
+
+.item_button_graph{
+  margin-right: 30px;
+}
+
+.zebra_list_item_buttons{
+  display: flex;
+}
+.zebra_list_item_title{
+  margin-left: 20px;
+}
+.zebra_list_item_buttons .nav_button {
+  margin-right: 30px;
+}
+
+.zebra_list li:nth-child(odd):active:has(.nav_button:active) {
+  background-color: #aec3bc;
+}
+.zebra_list li:nth-child(even):active:has(.nav_button:active) {
+  background-color: #aec3bc;
+}
+
+thead {
+  background-color: #ffcf34;
+  text-transform: uppercase;
+}
+
+.logo_burg{
+  display: none;
+}
+
+th {
+  padding: 10px; 
+  
+  font-weight: bold;
+  border-bottom: 2px solid #ddd; 
+}
+table {
+  width: 100%; 
+  height: 100%; 
+  border-collapse: collapse; 
+}
+
+td, th {
+  text-align: center;
+  border: 1px solid #000000;
+  padding: 14px; 
+}
+
+.date{
+  display: flex;
+  height: 150px;
+  margin: 20px 0;
+  justify-content: space-around;
+}
+
+.date_layout{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  margin-left: 8px;
+}
+.data_inputs_container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  border: 2px solid #ddd;
+}
+.layout{
+  margin: 8px;
+  background-color: #4CAF50; /* Green */
+  border: none;
   color: white;
+  text-align: center;
+  text-decoration: none;
+  padding: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+.layout_confirm{
+  background-color: #4c74af; /* Green */
+  margin: 12px 70px;
+
+}
+.layout:hover {
+  background-color: #027202;
 }
 
-.App-link {
-  color: #61dafb;
+.layout:active {
+  background-color: #011608;
+}
+.date_input{
+  width: 150px;
+}
+.ct-point{
+  stroke-width: 2px;
+}
+.ct-line {
+  stroke-width: 3px;
+}
+.ct-label {
+  stroke-width: 2px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header_graph_block__title{
+margin: 25px;
+font-size: 25px;
+}
+.header_mobile {
+display: none;
+}
+body{
+margin: 0;
+}
+@media (max-width: 425px) {
+
+/* .nav_button a { body > div.container > div.nav_container > nav > div:nth-child(1) > a
+  font-size: 40px;
+} */
+.nav_button_head a {
+  font-size: 35px;
+  
+  /* color: red; */
+}
+.zebra_list_item_title{
+  font-size: 17px;
+}
+button {
+  font-size: inherit; /* Наследует размер шрифта от родительского элемента (body) */
+  text-transform: none;
+  /* Дополнительные стили для кнопок */
+}
+.zebra_list_item_buttons .nav_button {
+  margin-right: 13px;
+}
+
+header {
+  display: none;
+}
+
+.container {
+  display: block;
+  min-height: auto;
+}
+
+.mobil_container_head {
+  position: fixed;
+  width: -webkit-fill-available;
+}
+.logo_burg {
+  display: flex;
+  background-color: #a88a8a;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_mobile img{
+  width: 75px;
+  height: 75px;
+}
+.burger {
+  background-color: #92a88a;
+}
+
+.nav_container {
+  /* display: ; */
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+}
+
+.header_mobile {
+  display: block;
+  /* position: fixed; */
+}
+
+.nav_settings {
+  position: relative;
+  width: auto;
+  /* top: 0;
+  width: 100%;
+  */
+  margin-bottom: 0; 
+}
+/* .header_menu_fix {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 300px;
+  background-color: #db1c1c;
+} */
+.logo_container {
+  display: none;
+}
+.nav_button_container .nav_button {
+  width: fit-content;
+  min-width: 250px;
+  margin: 25px 0;
+}
+.nav_button_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .nav_container nav {
+  margin-top: 0; 
+  TODO ты не доделал логику открытия бара при клике бургера
+  починить десктоп меню
+  регистрация
+  график
+} */
+}
+
+
+.navbar .nav-container li {
+list-style: none;
+}
+.burger .nav-container {
+display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.nav-container .checkbox {
+position: absolute;
+display: block;
+height: 32px;
+width: 32px;
+/* top: 20px;
+left: 20px; */
+/* z-index: 5; */
+opacity: 0;
+cursor: pointer;
+}
+
+.nav-container .hamburger-lines {
+display: block;
+height: 26px;
+width: 32px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.nav-container .hamburger-lines .line {
+display: block;
+height: 4px;
+width: 100%;
+border-radius: 10px;
+background: #0e2431;
+}
+
+.nav-container .hamburger-lines .line1 {
+transform-origin: 0% 0%;
+transition: transform 0.4s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line2 {
+transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+transform-origin: 0% 100%;
+transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items li {
+margin-bottom: 1.2rem;
+font-size: 1.5rem;
+font-weight: 500;
+}
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+transform: translateX(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+transform: scaleY(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+transform: rotate(-45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .logo{
+display: none;
 }
