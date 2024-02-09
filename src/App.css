@@ -133,16 +133,19 @@ img {
   color: #000000;
  }
 .nav_button{
-  /* background-color: #FFCF34; */
+  background-color: #FFCF34;
   border: 2px solid #333;
   border-radius: 15px;
   margin: 8px;
   min-width: 115px;
   padding: 0px 29px;
 }
-/* .nav_button:active { */
-  /* background-color: #476e3b; */
-/* } */
+/* .nav_button:active {
+  background-color: #4cec1b;
+} */
+.active {
+  background-color: #476e3b;
+}
 .close_btn:not(.active) {
   background-color: #11131185;
 }

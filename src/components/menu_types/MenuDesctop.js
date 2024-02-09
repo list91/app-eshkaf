@@ -51,7 +51,7 @@ class MenuDesctop extends React.Component {
                     <img src={process.env.PUBLIC_URL + "images/logo.png"} alt=""/>
                 </div>
                 <nav className="nav_button_container">
-                    <ButtonDefault name="мониторинг" block={true}/>
+                    <ButtonDefault name="мониторинг" block={true} href="/"/>
                     <ButtonDefault name="оповещения" block={true}/>
                     <ButtonDefault name="журнал аварий" block={true}/>
                     <ButtonDefault name="отчет" block={true}/>

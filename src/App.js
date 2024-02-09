@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from './components/Header';
 import Monitoring from './pages/Monitoring';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Power from './pages/Power'
 function App() {
   return (
     <div className="App">
@@ -15,9 +16,9 @@ function App() {
             <div id='main-content'>
               <BrowserRouter>
                 <Routes>
-
+                  {/* стартовая (временно) */}
                   <Route path="/" element={<Monitoring />} />
-                  <Route path="new-page" element={<Monitoring />} />
+                  <Route path="power" element={<Power />} />
 
                 </Routes>
               </BrowserRouter>

@@ -1,21 +1,32 @@
 import React from "react";
 import ButtonDefault from "../components/common/buttons/ButtonDefault";
+import RadioButton from "../components/common/buttons/RadioButton";
 class Page extends React.Component {
+    constructor(props){
+      super(props);
+      this.list = [
+        "нагрузка0",
+        "нагрузка1",
+        "нагрузка2",
+        "нагрузка3"
+    ];
+      this.list2 = [
+        "param0",
+        "param1",
+        "param2",
+        "param3"
+    ];
+    }
     
     getZebraList(list) {
-        const handleButtonClick = (itemName) => {
-          alert(`Выбран элемент: ${itemName}`);
-        };
-      
+        let togg_group = "toggle_power";
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
               <li key={index}>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
-                  <ButtonDefault name="выбрать" onClickAction={() => {
-                    alert(element+"  "+"выбран");
-                  }} />
+                  <ButtonDefault name="выбрать" toggle={true}/>
                 </div>
               </li>
             ))}
@@ -24,10 +35,6 @@ class Page extends React.Component {
       }
       
       getZebraListParams(list) {
-        // const handleButtonClick = (itemName) => {
-        //   alert(itemName);
-        //   alert(`Нажата кнопка ${itemName} для элемента`);
-        // };
       
         return (
           <ul className="zebra_list">
@@ -47,31 +54,5 @@ class Page extends React.Component {
           </ul>
         );
       }
-      
-
-
-    // getZebraList(list) {
-    //     return (
-    //         <ul className="zebra_list">
-    //             {Object.values(list).map((item, index) => (
-    //                 <li key={index}>
-    //                     {item.elems.map((elem, elemIndex) => (
-    //                         <div key={elemIndex}>
-    //                         {elem.label && <div className="zebra_list_item_title">{elem.label}</div>}
-    //                         {elem.buttons && (
-    //                             <div className="zebra_list_item_buttons">
-    //                             {elem.buttons.map((button, buttonIndex) => (
-    //                                 <ButtonDefault key={buttonIndex} name={button.button} />
-    //                             ))}
-    //                             </div>
-    //                         )}
-    //                         </div>
-    //                     ))}
-    //                 </li>
-    //             ))}
-    //         </ul>
-
-    //     );
-    // }
 }
 export default Page;
