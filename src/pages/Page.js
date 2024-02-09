@@ -14,7 +14,7 @@ class Page extends React.Component {
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
                   <ButtonDefault name="выбрать" onClickAction={() => {
-                    alert(element);
+                    alert(element+"  "+"выбран");
                   }} />
                 </div>
               </li>
@@ -24,10 +24,10 @@ class Page extends React.Component {
       }
       
       getZebraListParams(list) {
-        const handleButtonClick = (itemName) => {
-          alert(itemName);
-          alert(`Нажата кнопка ${itemName} для элемента`);
-        };
+        // const handleButtonClick = (itemName) => {
+        //   alert(itemName);
+        //   alert(`Нажата кнопка ${itemName} для элемента`);
+        // };
       
         return (
           <ul className="zebra_list">
@@ -36,10 +36,10 @@ class Page extends React.Component {
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
                   <ButtonDefault name="график" onClickAction={() => {
-                    alert(element);
+                    alert(element+"  "+"график");
                   }} />
                   <ButtonDefault name="таблица" onClickAction={() => {
-                    alert(element);
+                    alert(element+"  "+"таблица");
                   }} />
                 </div>
               </li>

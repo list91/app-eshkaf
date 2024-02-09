@@ -72,8 +72,8 @@ class MonitoringPage extends Page {
     }
     render() {
         return (
-            // this.getZebraList(this.list)
-            this.getZebraListParams(this.list2)
+            this.getZebraList(this.list)
+            // this.getZebraListParams(this.list2)
         )
     }
     
