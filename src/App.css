@@ -3,7 +3,8 @@
   --button-success: #28a745;
 }
 
-/* Новое изменение */
+/* Комментарий */
+
 .selector-for-some-widget {
   box-sizing: content-box;
 }
@@ -36,14 +37,9 @@ header nav {
   display: inline-flex;
 }
 
-.container {
-  margin: 0;
-  padding: 0;
-}
-
-/* .header_info{
+.header_info{
   width: fit-content;
-} */
+}
 .header_menu{
   display: flex;
   align-items: center;
@@ -130,8 +126,7 @@ footer {
 .header_and_maincontent_container {
   flex: 1;
   height: 100%;
-  width: 100%;
-  margin-top: 35px;
+  width: fit-content;
 }
 
 img {
@@ -416,22 +411,10 @@ margin: 0;
   font-size: 40px;
 } */
 .nav_button_head a {
-  font-size: 10px;
+  font-size: 35px;
   
   /* color: red; */
 }
-
-.burger {
-  margin: 0;
-  padding: 0;
-  max-width: 27px;
-}
-
-.burger_container {
-  margin: 0;
-  padding: 0;
-}
-
 .zebra_list_item_title{
   font-size: 17px;
 }
@@ -462,7 +445,6 @@ header {
   background-color: #a88a8a;
   align-items: center;
   justify-content: space-between;
-  padding: 0 35px;
 }
 .header_mobile img{
   width: 75px;
@@ -527,8 +509,9 @@ header {
 list-style: none;
 }
 .burger .nav-container {
-  display: flex;
+display: flex;
   align-items: center;
+  margin-right: 15px;
 }
 
 .nav-container .checkbox {
