@@ -3,11 +3,17 @@ import ButtonLayout from "./ButtonLayout"
 class ButtonDefault extends ButtonLayout {
   constructor(props) {
     super(props);
+    
     this.NAME = props.name;
     if(props.href){
       this.HREF = props.href;
     }else{
       this.HREF = "#";
+    }
+    if(props.onClickAction){
+      this.onClickAction = props.onClickAction;
+    }else{
+      this.onClickAction = null;
     }
     if(props.toggle){
       this.isToggle = props.toggle;
@@ -49,6 +55,9 @@ class ButtonDefault extends ButtonLayout {
   handleMouseDown = () => {
     if(!this.isToggle){
       this.setState({isActive: true});
+    }
+    if(this.onClickAction!=null){
+      this.onClickAction();
     }
   };
   handleMouseUp = () => {
