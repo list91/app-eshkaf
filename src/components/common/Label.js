@@ -1,17 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 
 class Label extends React.Component {
     constructor(props){
         super(props);
+        this.contentDefault = "_____";
         this.title1 = props.title1+":";
         this.title2 = props.title2+":";
 
-        if (props.content1!=null && props.content2!=null){
+        if (props.content1!=null){
             this.content1 = props.content1;
+        } else {    
+            this.content1 = this.contentDefault;
+        }
+        if (props.content2!=null){
             this.content2 = props.content2;
         } else {    
-            this.content1 = "_____";
-            this.content2 = "_____";
+            this.content2 = this.contentDefault;
         }
     }
     updateContent(content1, content2){

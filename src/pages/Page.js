@@ -1,6 +1,7 @@
 import React from "react";
 import ButtonDefault from "../components/common/buttons/ButtonDefault";
 import RadioButton from "../components/common/buttons/RadioButton";
+import Cookies from "js-cookie";
 class Page extends React.Component {
     constructor(props){
       super(props);
@@ -26,7 +27,11 @@ class Page extends React.Component {
               <li key={index}>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
-                  <ButtonDefault name="выбрать" toggle={true}/>
+                  <ButtonDefault name="выбрать" onClickAction={() => {
+                    // console.log(element+"  "+"график");
+                    Cookies.set('power', element);// записали
+                    // alert(Cookies.get('power'));// записали
+                  }}/>
                 </div>
               </li>
             ))}
@@ -43,10 +48,10 @@ class Page extends React.Component {
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
                   <ButtonDefault name="график" onClickAction={() => {
-                    alert(element+"  "+"график");
+                    console.log(element+"  "+"график");
                   }} />
                   <ButtonDefault name="таблица" onClickAction={() => {
-                    alert(element+"  "+"таблица");
+                    console.log(element+"  "+"таблица");
                   }} />
                 </div>
               </li>

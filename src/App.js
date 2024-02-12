@@ -16,10 +16,8 @@ function App() {
             <div id='main-content'>
               <BrowserRouter>
                 <Routes>
-                  {/* стартовая (временно) */}
-                  <Route path="/" element={<Monitoring />} />
+                  <Route path="monitoring" element={<Monitoring />} />
                   <Route path="power" element={<Power />} />
-
                 </Routes>
               </BrowserRouter>
             </div>
