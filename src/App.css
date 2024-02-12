@@ -1,3 +1,9 @@
+:root {
+  --button-default: #ffc107;
+  --button-success: #28a745;
+}
+
+
 .selector-for-some-widget {
   box-sizing: content-box;
 }
@@ -133,7 +139,7 @@ img {
   color: #000000;
  }
 .nav_button{
-  background-color: #FFCF34;
+  background-color: var(--button-default);
   border: 2px solid #333;
   border-radius: 15px;
   margin: 8px;
