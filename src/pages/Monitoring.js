@@ -5,18 +5,7 @@ class MonitoringPage extends Page {
     constructor(props){
         super(props);
         this.init();
-        this.list = [
-            "string0",
-            "string1",
-            "string2",
-            "string3"
-        ];
-        this.list2 = [
-            "param0",
-            "param1",
-            "param2",
-            "param3"
-        ];
+        
     }
     init(){
         this.qq = {
@@ -72,8 +61,8 @@ class MonitoringPage extends Page {
     }
     render() {
         return (
-            this.getZebraList(this.list)
-            // this.getZebraListParams(this.list2)
+            // this.getZebraList(this.list)
+            this.getZebraListParams(this.list2)
         )
     }
     

@@ -54,11 +54,11 @@ import Page from "./Page";
             }
         };
     }
-    // render(){
-    //     return(
-
-    //     )
-    // }
+    render(){
+        return(
+            this.getZebraList(this.list)
+        )
+    }
  }
 
  export default PowerPage;

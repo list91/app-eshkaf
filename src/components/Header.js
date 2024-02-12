@@ -10,8 +10,8 @@ class Header extends React.Component {
                     <Label title1="объект" title2="нагрузка" />
                     <div class="header_menu">                    
                         <nav>
-                            <ButtonDefault name="выбрать нагрузку"/>
-                            <ButtonDefault name="контакты" block={true} />
+                            <ButtonDefault name="выбрать нагрузку" href="power"/>
+                            <ButtonDefault name="контакты" block={true}/>
                             <ButtonDefault name="главная" block={true} />
                         </nav>
                     </div>
