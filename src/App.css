@@ -1,3 +1,10 @@
+:root {
+  --button-default: #ffc107;
+  --button-success: #28a745;
+}
+
+/* Комментарий */
+
 .selector-for-some-widget {
   box-sizing: content-box;
 }
@@ -133,7 +140,7 @@ img {
   color: #000000;
  }
 .nav_button{
-  background-color: #FFCF34;
+  background-color: var(--button-default);
   border: 2px solid #333;
   border-radius: 15px;
   margin: 8px;
@@ -397,6 +404,7 @@ display: none;
 body{
 margin: 0;
 }
+
 @media (max-width: 425px) {
 
 /* .nav_button a { body > div.container > div.nav_container > nav > div:nth-child(1) > a
