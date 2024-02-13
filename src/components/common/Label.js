@@ -27,12 +27,12 @@ class Label extends React.Component {
                 <div class="header_info">
                     <div class="nav_button">
                         <div class="button_a info_descr" ><div class="descr_title">{this.title1}</div>
-                        <div class="descr_item">
+                        <div class="descr_item" id="content1">
                             {this.content1}
                         </div>
                     </div>
                         <div class="button_a info_descr" ><div class="descr_title">{this.title2}</div>
-                        <div class="descr_item">
+                        <div class="descr_item" id="content2">
                             {this.content2}
                         </div>
                     </div>

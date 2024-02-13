@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonDefault from "../common/buttons/ButtonDefault";
+import Cookies from "js-cookie";
 
 class MenuDesctop extends React.Component {
     constructor(props){
@@ -45,13 +46,20 @@ class MenuDesctop extends React.Component {
     
 
     render(){
+        let power = Cookies.get("power");
+        let mon_link;
+        if(power){
+            mon_link = `/${power}/monitoring`;
+        } else {
+            mon_link = `/power`;            
+        }
         return(
             <div className="nav_container" ref={this.navContainerRef}>
                 <div className="logo_container">
-                    <img src={process.env.PUBLIC_URL + "images/logo.png"} alt=""/>
+                    <img src={"/images/logo.png"} alt=""/>
                 </div>
                 <nav className="nav_button_container">
-                    <ButtonDefault name="мониторинг" block={true} href="monitoring"/>
+                    <ButtonDefault name="мониторинг" block={true} href={mon_link}/>
                     <ButtonDefault name="оповещения" block={true}/>
                     <ButtonDefault name="журнал аварий" block={true}/>
                     <ButtonDefault name="отчет" block={true}/>

@@ -1,7 +1,5 @@
 import './App.css';
 import Menu from './components/Menu';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from './components/Header';
 import Monitoring from './pages/Monitoring';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -16,7 +14,7 @@ function App() {
             <div id='main-content'>
               <BrowserRouter>
                 <Routes>
-                  <Route path="monitoring" element={<Monitoring />} />
+                  <Route path="/:selectedPower/monitoring" element={<Monitoring />} />
                   <Route path="power" element={<Power />} />
                 </Routes>
               </BrowserRouter>

@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonLayout from "./ButtonLayout"
-class ButtonDefault extends ButtonLayout {
+import Button from "./Button"
+class ButtonDefault extends Button {
   constructor(props) {
     super(props);
     
