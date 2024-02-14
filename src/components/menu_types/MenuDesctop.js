@@ -65,7 +65,7 @@ class MenuDesctop extends React.Component {
                     <ButtonDefault name="отчет" block={true}/>
                 </nav>
                 <div className="nav_settings nav_button_container">
-                    <ButtonDefault name="настройки" block={true}/>
+                    <ButtonDefault name="настройки" block={true} href="/"/>
                 </div>
             </div>
         )

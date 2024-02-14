@@ -1,6 +1,5 @@
 import React from "react";
 import ButtonDefault from "../components/common/buttons/ButtonDefault";
-// import RadioButton from "../components/common/buttons/RadioButton";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -34,7 +33,6 @@ class Page extends React.Component {
 
                     Cookies.set('power', element);// записали
                     document.getElementById("content2").textContent = Cookies.get("power");
-                    // q("monitoring");
                   }}/>
                 </div>
               </li>

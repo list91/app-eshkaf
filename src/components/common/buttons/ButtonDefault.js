@@ -79,11 +79,8 @@ class ButtonDefault extends Button {
     return (
       <div
         className={this.buttonClasses}
-        // onMouseDown={this.toggleButton}
         onMouseDown={this.isToggle ? this.toggleButton : this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-        // style={{ backgroundColor: isActive ? this.BG_ACTIVE : this.BG_MAIN }}
-      >
+        onMouseUp={this.handleMouseUp}>
         <a className="button_a" href={this.HREF}>
           {this.NAME}
         </a>
