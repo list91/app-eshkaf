@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Power from './pages/Power'
 function App() {
   return (
-    <div className="App">
+    <div className="App content">
         <div className='container'>
           <Menu/>
           <div className="header_and_maincontent_container">

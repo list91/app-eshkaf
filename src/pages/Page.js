@@ -5,16 +5,16 @@ class Page extends React.Component {
     constructor(props){
       super(props);
       this.list = [
-        "нагрузка0",
-        "нагрузка1",
-        "нагрузка2",
-        "нагрузка3"
+        "Щит распределительный ЩР-2.61.1",
+        "Щит распределительный ЩР-2.61.2",
+        "Щит распределительный ЩР-2.61.3",
+        "Щит распределительный ЩР-2.61.4"
     ];
       this.list2 = [
-        "param0",
-        "param1",
-        "param2",
-        "param3"
+        "Напряжение (RMS) на фазе L1",
+        "Напряжение (RMS) на фазе L2",
+        "Напряжение (RMS) на фазе L3",
+        "Линейное напряжение между фазами L1-L2"
     ];
     }
     
@@ -23,7 +23,10 @@ class Page extends React.Component {
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
-              <li key={index}>
+              <li className="zebra_list_item"  key={index} >
+                <div className="mobile_power">
+                  <ButtonDefault name="выбрать" toggle={true}/>
+                </div>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
                   <ButtonDefault name="выбрать" toggle={true}/>
@@ -39,7 +42,12 @@ class Page extends React.Component {
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
-              <li key={index}>
+              <li className="zebra_item" key={index} >
+                <div className="zebra_item_mobile">
+                  <ButtonDefault name="таблица" onClickAction={() => {
+                    alert(element+"  "+"таблица");
+                  }} />
+                </div>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
                   <ButtonDefault name="график" onClickAction={() => {

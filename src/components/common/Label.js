@@ -21,7 +21,7 @@ class Label extends React.Component {
     render(){
         return(
                 <div class="header_info">
-                    <div class="nav_button">
+                    <div class="nav_button client_info">
                         <div class="button_a info_descr" ><div class="descr_title">{this.title1}</div>
                         <div class="descr_item">
                             {this.content1}
