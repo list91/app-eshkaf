@@ -92,7 +92,6 @@ class Graph extends Component {
     }
 
     render() {
-        // const [data] = this.state;
         return (
             <div>
             <form>
@@ -100,39 +99,18 @@ class Graph extends Component {
                     <InputCalendar/>
                     <div class="date_layout">
                     <GroupRange onButtonClick={(data) => {
-                        // console.log(`Кнопка ${data} была нажата`);
-                        // console.log(this.state);
-                        const stringFrom = DateConverter.getStringFormatDate()
-                        // const stringFrom = DateConverter.getSubtractDates();
-                        // TODO СДЕЛАЙ КОНВЕРТАЦИЮ ГИБКО, ЧТОБЫ ПЕРЕДАВАЛОСЬ ЛЮБОЕ ОТ ДО (НЕ ТОЛЬКО ДО ТЕКУЩЕГО ВРЕМЕНИ)
-                        const dateFrom = DateConverter.getSeconds(new Date());
+                        const from = DateConverter.getSubtractDates(new Date(), data); // data -> FORMAT [0,0,0,0,0,0]
+                        
+                        const dateFrom = DateConverter.getSeconds(from);
                         const dateTo = DateConverter.getSeconds(new Date());
                         this.state = {
-                            from: data,
-                            to: data
+                            from: dateFrom,
+                            to: dateTo
                         }
-
                     }} />
-
-                        {/* <ButtonDateRange text="последние 5 секунд"/>
-                        <ButtonDateRange text="последние 5 минут"/>
-                        <ButtonDateRange text="последние 15 минут"/>
-                        <ButtonDateRange text="последние 30 минут"/>
-                        <ButtonDateRange text="последний 1 час"/>
-                        <ButtonDateRange text="последние 3 часа"/>
-                        <ButtonDateRange text="последние 6 часа"/>
-                        <ButtonDateRange text="последние 12 часов"/>
-                        <ButtonDateRange text="последний 1 день"/> */}
                     </div>
                 </div>
             </form>
-            {/* <ButtonDefault name="выбрать" onClickAction={() => {
-                console.log(this.state)
-                this.state = {
-                    data: this.data2
-                }
-                this.paintGraph();
-            }}/> */}
             <canvas ref={this.chartRef} />
             </div>
         );

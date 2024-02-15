@@ -2,7 +2,7 @@ class DateConverter{
     // timeFromFormat = Math.floor(startDate.getTime() / 1000) - 25200; 
     
     // передаем старт в виде Дате(), конец в виде СПИСОК
-    // получаем в виде СПИСОК
+    // получаем в виде Дате()
     static getSubtractDates(startDate, endDate) {
         const resultDate = new Date(
           startDate.getFullYear() - endDate[2],
@@ -12,7 +12,7 @@ class DateConverter{
           startDate.getMinutes() - endDate[4],
           startDate.getSeconds() - endDate[5]
         );
-        return this.getCurrentDate(resultDate);
+        return resultDate;
       }
     
     // передаю в виде Дате() верну СЕКУНДЫ (инт)

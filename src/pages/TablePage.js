@@ -1,6 +1,6 @@
 import React from "react";
-import Graph from "../utils/data_visualization/Graph";
-class ParamGraph extends React.Component{
+import Table from "../utils/data_visualization/Table"
+class TablePage extends React.Component{
     constructor(props){
         super(props);
         this.data = [
@@ -17,9 +17,10 @@ class ParamGraph extends React.Component{
 
     render(){
         return(
-            <Graph from="1" to="1" data={this.data}/>
+            <Table from="1" to="1" data={this.data}/>
+            // <Graph from="1" to="1" data={this.data}/>
         )
     }
 }
 
-export default ParamGraph;
+export default TablePage;

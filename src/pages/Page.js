@@ -42,16 +42,17 @@ class Page extends React.Component {
       }
       
       getZebraListParams(list) {
-      
+        const power = Cookies.get("power");
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
               <li key={index}>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
-                  <ButtonDefault name="график" onClickAction={() => {
+                  <ButtonDefault name="график" href={`/${power}/monitoring/${element}/graph`} onClickAction={() => {
                     // рисую батоны
                     // рисую график (визуализацию)
+
                     console.log(element+"  "+"график");
                   }} />
                   <ButtonDefault name="таблица" onClickAction={() => {
