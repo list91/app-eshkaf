@@ -1,13 +1,19 @@
 import React from "react";
-import ButtonLayout from "./ButtonLayout"
-class ButtonDefault extends ButtonLayout {
+import Button from "./Button"
+class ButtonDefault extends Button {
   constructor(props) {
     super(props);
+    
     this.NAME = props.name;
     if(props.href){
       this.HREF = props.href;
     }else{
       this.HREF = "#";
+    }
+    if(props.onClickAction){
+      this.onClickAction = props.onClickAction;
+    }else{
+      this.onClickAction = null;
     }
     if(props.toggle){
       this.isToggle = props.toggle;
@@ -50,6 +56,9 @@ class ButtonDefault extends ButtonLayout {
     if(!this.isToggle){
       this.setState({isActive: true});
     }
+    if(this.onClickAction!=null){
+      this.onClickAction();
+    }
   };
   handleMouseUp = () => {
     if(!this.isToggle){
@@ -70,11 +79,8 @@ class ButtonDefault extends ButtonLayout {
     return (
       <div
         className={this.buttonClasses}
-        // onMouseDown={this.toggleButton}
         onMouseDown={this.isToggle ? this.toggleButton : this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
-        // style={{ backgroundColor: isActive ? this.BG_ACTIVE : this.BG_MAIN }}
-      >
+        onMouseUp={this.handleMouseUp}>
         <a className="button_a" href={this.HREF}>
           {this.NAME}
         </a>

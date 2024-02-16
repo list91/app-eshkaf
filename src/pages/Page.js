@@ -1,6 +1,8 @@
 import React from "react";
 import ButtonDefault from "../components/common/buttons/ButtonDefault";
-import RadioButton from "../components/common/buttons/RadioButton";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+
 class Page extends React.Component {
     constructor(props){
       super(props);
@@ -20,6 +22,7 @@ class Page extends React.Component {
     
     getZebraList(list) {
         let togg_group = "toggle_power";
+        // const q = useNavigate();
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
@@ -29,7 +32,11 @@ class Page extends React.Component {
                 </div>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
-                  <ButtonDefault name="выбрать" toggle={true}/>
+                  <ButtonDefault name="выбрать" href={`/${element}/monitoring`} onClickAction={() => {
+
+                    Cookies.set('power', element);// записали
+                    document.getElementById("content2").textContent = Cookies.get("power");
+                  }}/>
                 </div>
               </li>
             ))}
@@ -38,7 +45,7 @@ class Page extends React.Component {
       }
       
       getZebraListParams(list) {
-      
+        const power = Cookies.get("power");
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
@@ -50,11 +57,16 @@ class Page extends React.Component {
                 </div>
                 <div className="zebra_list_item_title">{element}</div>
                 <div className="zebra_list_item_buttons">
-                  <ButtonDefault name="график" onClickAction={() => {
-                    alert(element+"  "+"график");
+                  <ButtonDefault name="график" href={`/${power}/monitoring/${element}/graph`} onClickAction={() => {
+                    // рисую батоны
+                    // рисую график (визуализацию)
+
+                    console.log(element+"  "+"график");
                   }} />
                   <ButtonDefault name="таблица" onClickAction={() => {
-                    alert(element+"  "+"таблица");
+                  // рисую батоны
+                  // рисую таблицу (визуализацию)
+                    console.log(element+"  "+"таблица");
                   }} />
                 </div>
               </li>
