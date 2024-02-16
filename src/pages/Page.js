@@ -6,6 +6,22 @@ import Cookies from "js-cookie";
 class Page extends React.Component {
     constructor(props){
       super(props);
+      var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://192.168.0.151/controller/meter/param', true);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response); // Обработка ответа
+        } else {
+          console.error('Ошибка при выполнении запроса. Статус:', xhr.status);
+          // console.error(xhr);
+        }
+      }
+    };
+
+    xhr.send();
       this.list = [
         "Щит распределительный ЩР-2.61.1",
         "Щит распределительный ЩР-2.61.2",
