@@ -10,7 +10,7 @@ import GraphPage from './pages/GraphPage';
 Chart.register(CategoryScale);
 function App() {
   return (
-    <div className="App">
+    <div className="App content">
         <div className='container'>
           <Menu/>
           <div className="header_and_maincontent_container">

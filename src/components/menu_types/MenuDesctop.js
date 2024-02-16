@@ -3,14 +3,14 @@ import ButtonDefault from "../common/buttons/ButtonDefault";
 import Cookies from "js-cookie";
 
 class MenuDesctop extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.ID_BURGER = "burger";
 
         // меню десктопа используется в мобильном меню если ширина экрана соотвтетствует
         this.navContainerRef = React.createRef();
     }
-    
+
     componentDidMount() {
         const burgerCheckbox = document.getElementById(this.ID_BURGER);
         if (burgerCheckbox) {
@@ -33,7 +33,7 @@ class MenuDesctop extends React.Component {
         if (burgerCheckbox && navContainer) {
             const screenWidth = window.innerWidth;
             // alert(screenWidth);
-            if(screenWidth<425){
+            if (screenWidth < 450) {
 
                 if (burgerCheckbox.checked) {
                     navContainer.classList.remove("hidden");
@@ -43,30 +43,33 @@ class MenuDesctop extends React.Component {
             }
         }
     };
-    
 
-    render(){
-        let power = Cookies.get("power");
+
+
+    render() {
+      let power = Cookies.get("power");
         let mon_link;
         if(power){
             mon_link = `/${power}/monitoring`;
         } else {
             mon_link = `/power`;            
         }
-        return(
+        return (
             <div className="nav_container" ref={this.navContainerRef}>
                 <div className="logo_container">
-                    <img src={"/images/logo.png"} alt=""/>
+                    <img src={process.env.PUBLIC_URL + "images/logo.png"} alt="" />
                 </div>
                 <nav className="nav_button_container">
-                    <ButtonDefault name="мониторинг" block={true} href={mon_link}/>
-                    <ButtonDefault name="оповещения" block={true}/>
-                    <ButtonDefault name="журнал аварий" block={true}/>
-                    <ButtonDefault name="отчет" block={true}/>
+                    <ButtonDefault name="выбрать нагрузку" href="power" />
+                    <ButtonDefault name="мониторинг" block={true} href={mon_link} />
+                    <ButtonDefault name="оповещения" block={true} />
+                    <ButtonDefault name="журнал аварий" block={true} />
+                    <ButtonDefault name="отчет" block={true} />
+                    <ButtonDefault name="настройки" block={true} />
+                    <ButtonDefault name="контакты" block={true} />
                 </nav>
-                <div className="nav_settings nav_button_container">
-                    <ButtonDefault name="настройки" block={true} href="/"/>
-                </div>
+
+
             </div>
         )
     }
