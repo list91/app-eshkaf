@@ -48,7 +48,15 @@ class Graph extends Component {
             this.chart.destroy(); // Уничтожаем предыдущий график, если он существует
         }
 
-        console.log(data);
+        let max_y = Number.MIN_SAFE_INTEGER;
+
+        for (const key in data) {
+            if (data[key].y > max_y) {
+                max_y = data[key].y;
+            }
+        }
+
+        // alert(max_y)
 
         const datas = {
             datasets: [
@@ -77,7 +85,7 @@ class Graph extends Component {
                         type: 'linear',
                         beginAtZero: false,
                         stepSize: 50,
-                        max: 15
+                        max: max_y
                     },
                     x: {
                         type: 'linear',
@@ -100,7 +108,6 @@ class Graph extends Component {
                     <div class="date_layout">
                     <GroupRange onButtonClick={(data) => {
                         const from = DateConverter.getSubtractDates(new Date(), data); // data -> FORMAT [0,0,0,0,0,0]
-                        
                         const dateFrom = DateConverter.getSeconds(from);
                         const dateTo = DateConverter.getSeconds(new Date());
                         this.state = {

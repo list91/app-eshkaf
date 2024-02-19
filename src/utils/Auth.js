@@ -21,7 +21,8 @@ class Auth {
     static httpGet(pref)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'http://192.168.0.151' + pref, false ); // false for synchronous request
+    // xmlHttp.open( "GET", 'http://194.58.94.47:90' + pref, false ); // false for synchronous request
+    xmlHttp.open( "GET", 'http://194.58.94.47:80' + pref, false ); // 90 false for synchronous request
     xmlHttp.send( null );
     console.log(xmlHttp.responseText);
     return JSON.parse(xmlHttp.responseText);
