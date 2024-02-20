@@ -1,68 +1,34 @@
 import React from "react";
 import ButtonDefault from "../components/common/buttons/ButtonDefault";
 import Page from "./Page";
+import AuthZab from "../utils/AuthZab";
+import Cookies from "js-cookie";
 class MonitoringPage extends Page {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.init();
-        
-    }
-    init(){
-        this.qq = {
-            0: {
-                "elems": [
-                    {
-                        "label": "СТРОКА"
-                    },
-                    {
-                        "buttons": [
-                            {
-                                "button": "график"
-                            },
-                            {
-                                "button": "талица"
-                            }
-                        ]
-                    }
-                ]
-            },
-            1: {
-                "elems": [
-                    {
-                        "label": "СТРОКА"
-                    },
-                    {
-                        "buttons": [
-                            {
-                                "button": "талица"
-                            }
-                        ]
-                    }
-                ]
-            },
-            2: {
-                "elems": [
-                    {
-                        "label": "СТРОКА"
-                    },
-                    {
-                        "buttons": [
-                            {
-                                "button": "график"
-                            },
-                            {
-                                "button": "талица"
-                            }
-                        ]
-                    }
-                ]
-            }
+        this.state = {
+            list: []
         };
     }
+
+    componentDidMount() {
+        AuthZab.getItems(Cookies.get("hostid"))
+            .then(response => {
+                if (response) {
+                    const hostList = response.map(item => item);
+                    this.setState({ list: hostList });
+                    
+                }
+            })
+            .catch(error => {
+                console.error("Произошла ошибка:", error);
+            });
+    }
+
+    
     render() {
         return (
-            // this.getZebraList(this.list)
-            this.getZebraListParams(this.list2)
+            this.getZebraListParams(this.state.list)
         )
     }
     

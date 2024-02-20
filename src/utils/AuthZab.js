@@ -1,57 +1,118 @@
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom"
+import { withRouter } from 'react-router';
 class AuthZab {
-    constructor() {
-    // constructor(url, login, password) {
-      
-        this.historyMethod = "history.get";
-        this.userMethod = "user.login";
-        this.itemMethod = "item.get";
-        this.hostMethod = "host.get";
-      
-    //   this.URL = "http://192.168.0.160/zabbix/api_jsonrpc.php";
-      this.URL = "http://194.58.94.47/zabbix/api_jsonrpc.php";
-    //   this.LOGIN = login;
-    //   this.PASSWORD = password;
-      this.request = new XMLHttpRequest();
-      this.requestData = {
-        jsonrpc: '2.0',
-        method: 'user.login',
-        params: {
-          username: this.LOGIN,
-          password: this.PASSWORD,
-        },
-        id: 1,
-        auth: null,
-      };
-    //   this.initAuth()
+    // constructor() {
+    //   this.historyMethod = "history.get";
+    //   this.userMethod = "user.login";
+    //   this.itemMethod = "item.get";
+    //   this.hostMethod = "host.get";      
+    //   this.URL = "http://194.58.94.47/zabbix/api_jsonrpc.php";
+    //   this.request = new XMLHttpRequest();
+    // }
 
 
-    }
-      initAuth() {
-      this.authenticateAndGetAPI(this.URL, this.LOGIN, this.PASSWORD)
+    static getToken(){
+      let token = Cookies.get("auth");
+      if (token) {
+        return token;
+      } else {
+        if (window.location.pathname !== '/login') {
+          window.location.replace("/login")          
+        }
       }
-    static async getResponse(method, params, api) {
-        
-        const requestData = {
-            jsonrpc: '2.0',
-            method: method,
-            params: params,
-            id: 1,
-            auth: api,
+    }
+
+    static async getAuthApi(l,p){
+      let q = this.getResponse("user.login", { username: l, password: p })
+      .then((responseData) => {
+          return(responseData);
+      }).catch((error) => {});
+      // console.log(q);
+      return q;   
+    }
+
+    //     params: {
+        //         output: "extend",
+        //         hostids: hostId
+        //     },
+// const requestData = {
+//     jsonrpc: '2.0',
+//     method: 'host.get',
+//     params: {
+//         output: ['hostid', 'host'],
+//         filter: {
+//             host: [name]
+//         }
+//     },
+//     auth: this.API,
+//     id: 1
+// };
+
+    static async getHosts(){
+      let q = this.getResponse("host.get", {
+        output: ["hostid", "host"]
+      })
+      .then((responseData) => {
+          return(responseData);
+      }).catch((error) => {});
+      return q;   
+    }
+    static async getItems(hostid){
+      let q = this.getResponse("item.get", {
+        output: "extend",
+        hostids: hostid
+      })
+      .then((responseData) => {
+        console.log(responseData)
+          return(responseData);
+      }).catch((error) => {});
+      return q;   
+    }
+
+    static async getResponse(method, params) {
+      let api = this.getToken();
+      this.URL = "http://192.168.0.160/zabbix/api_jsonrpc.php";
+      // this.request = new XMLHttpRequest();
+      const requestData = {
+              jsonrpc: '2.0',
+              method: method,
+              params: params,
+              id: 1,
+              auth: api,
+      };
+      const data = await this.getPromis(requestData, this.URL);
+      return data.result;
+    }
+    static async getPromis(data, url) {
+      return new Promise((resolve, reject) => {
+          this.request = new XMLHttpRequest();
+          const requestData = data;
+          this.request.open('POST', url, true);
+          this.request.setRequestHeader('Content-Type', 'application/json');
+  
+          this.request.onload = () => {
+              if (this.request.status === 200) {
+                  const responseData = JSON.parse(this.request.responseText);
+                  resolve(responseData);
+              } else {
+                  reject(`HTTP error! Status: ${this.request.status}`);
+              }
           };
-        // let url = this.URL;
-        try {
-            const zabbixData = await this.getData(this.URL, requestData);
-            if (zabbixData.result && zabbixData.result.length > 0) {
-              return zabbixData.result;
-            } else {
-              console.log('No data found.');
-              return {};
-              
-            }
-          } catch (error) {
-            console.error('Error:', error.message);
-          }
+  
+          this.request.send(JSON.stringify(requestData));
+      });
+    }
+  
+          // if (zabbixData.result && zabbixData.result.length > 0) {
+          //     return zabbixData.result;
+          //   } else {
+          //     console.log('No data found.');
+          //     return {};
+          //   }
+          // } catch (error) {
+          //   console.error('Error:', error.message);
+          // }
         // const requestData = {
         //     jsonrpc: '2.0',
         //     method: "history.get",
@@ -97,10 +158,10 @@ class AuthZab {
         //     auth: this.API,
         //     id: 1
         // };
-    }
+    
       async getData(url, data) {
         return new Promise((resolve, reject) => {
-            alert(this.request)
+            // alert(this.request)
             this.request.open('POST', url, true);
             this.request.setRequestHeader('Content-Type', 'application/json');
     

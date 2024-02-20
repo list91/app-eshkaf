@@ -1,64 +1,32 @@
 import React from "react";
 import Page from "./Page";
- class PowerPage extends Page {
-    constructor(props){
+import AuthZab from "../utils/AuthZab";
+
+class PowerPage extends Page {
+    constructor(props) {
         super(props);
-        this.qq = {
-            0: {
-                "elems": [
-                    {
-                        "label": "СТРОКА"
-                    },
-                    {
-                        "buttons": [
-                            {
-                                "button": "график"
-                            },
-                            {
-                                "button": "талица"
-                            }
-                        ]
-                    }
-                ]
-            },
-            1: {
-                "elems": [
-                    {
-                        "label": "СТРОКА"
-                    },
-                    {
-                        "buttons": [
-                            {
-                                "button": "талица"
-                            }
-                        ]
-                    }
-                ]
-            },
-            2: {
-                "elems": [
-                    {
-                        "label": "СТРОКА"
-                    },
-                    {
-                        "buttons": [
-                            {
-                                "button": "график"
-                            },
-                            {
-                                "button": "талица"
-                            }
-                        ]
-                    }
-                ]
-            }
+        this.state = {
+            list: []
         };
     }
-    render(){
-        return(
-            this.getZebraList(this.list)
-        )
-    }
- }
 
- export default PowerPage;
+    componentDidMount() {
+        AuthZab.getHosts()
+            .then(response => {
+                if (response) {
+                    const hostList = response.map(item => item);
+                    this.setState({ list: hostList });
+                    console.log(hostList);
+                }
+            })
+            .catch(error => {
+                console.error("Произошла ошибка:", error);
+            });
+    }
+
+    render() {
+        return this.getZebraList(this.state.list);
+    }
+}
+
+export default PowerPage;

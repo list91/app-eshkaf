@@ -15,15 +15,16 @@ class GraphPage extends React.Component{
             // {"x": 13, "y": 9},
             // {"x": 2, "y": 10}
         ];
-        let dataV = Auth.httpGet("/controller/meter/param/value")["data"];
-      for (let index = 0; index < dataV.length; index++) {
-        let point = {};
-        const element = dataV[index];
-        console.log(element["Name"]);
-        point["x"] = element["Time"]
-        point["y"] = element["Value"]
-        this.data.push(point);
-      }
+        let dataV = null;
+        // let dataV = Auth.httpGet("/controller/meter/param/value")["data"];
+    //   for (let index = 0; index < dataV.length; index++) {
+    //     let point = {};
+    //     const element = dataV[index];
+    //     console.log(element["Name"]);
+    //     point["x"] = element["Time"]
+    //     point["y"] = element["Value"]
+    //     this.data.push(point);
+    //   }
     }
 
     render(){

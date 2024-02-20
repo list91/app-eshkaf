@@ -2,6 +2,19 @@
   --button-default: #ffc107;
   --button-success: #28a745;
 }
+.container-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center-content-auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 /* Комментарий */
 
