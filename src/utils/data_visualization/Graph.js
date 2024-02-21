@@ -4,24 +4,13 @@ import InputCalendar from "../../components/common/InputCalendar";
 import ButtonDefault from "../../components/common/buttons/ButtonDefault";
 import GroupRange from "../../components/common/button_group/GroupRange"
 import DateConverter from "../DateConverter";
+import AuthZab from "../AuthZab";
+import Cookies from "js-cookie";
 class Graph extends Component {
     constructor(props) {
         super(props);
-        
-        this.data2 = [
-            {"x": 0, "y": 1},
-            {"x": 2, "y": 2},
-            {"x": 4, "y": 3},
-            {"x": 6, "y": 6},
-            {"x": 8, "y": 7},
-            {"x": 9, "y": 8},
-            {"x": 13, "y": 9},
-            {"x": 2, "y": 4}
-        ];
         this.state = {
-            from: props.from,
-            to: props.to,
-            data: props.data,
+            data: props.data
         };
         this.chartRef = React.createRef();
     }
@@ -39,36 +28,78 @@ class Graph extends Component {
             }, this.paintGraph); // Вызываем paintGraph после обновления состояния
         }
     }
+    cancel_runprocess(){
+        if (this.updateTaskId) {
+            clearInterval(this.updateTaskId);            
+        }
+    }
+    runAutoUpdate(){
+        this.cancel_runprocess();
+        this.updateTaskId = setInterval(()=>{
+            console.log(1);
+            const from = DateConverter.getSubtractDates(new Date(), this.range); // data -> FORMAT [0,0,0,0,0,0]
+            const dateFrom = DateConverter.getSeconds(from);
+            const dateTo = DateConverter.getSeconds(new Date());
+            AuthZab.getHistory(
+                Cookies.get("itemType"),
+                Cookies.get("itemId"),
+                dateFrom,
+                dateTo
+            ).then(response => {
+                if (response) {
+                    console.log(response);
+                    this.setState({
+                        data: response
+                    });
+                    this.componentDidMount();
+                }
+            })
+            .catch(error => {
+                console.error("Произошла ошибка:", error);
+            });
+        },1000)
+    }
 
     paintGraph() {
-        const { from, to, data } = this.state;
+        
+        const { data } = this.state;
         const chartRef = this.chartRef.current.getContext("2d");
 
         if (typeof this.chart !== "undefined") {
             this.chart.destroy(); // Уничтожаем предыдущий график, если он существует
         }
 
-        let max_y = Number.MIN_SAFE_INTEGER;
-
-        for (const key in data) {
-            if (data[key].y > max_y) {
-                max_y = data[key].y;
-            }
-        }
-
-        // alert(max_y)
-
         const datas = {
             datasets: [
                 {
                     label: "this.name",
-                    data: data,
+                    data: data.map(item => {
+                        // alert(typeof parseInt(item.clock))
+                        // let time = DateConverter.getStringFormatDate(DateConverter.getCurrentDate(Number(item.clock)));
+                        // const date = new Date(parseInt(item.clock) * 1000); // умножаем на 1000, так как Date ожидает миллисекунды
+
+                        // const year = date.getFullYear();
+                        // const month = String(date.getMonth() + 1).padStart(2, '0'); // добавляем ведущий ноль, если месяц < 10
+                        // const day = String(date.getDate()).padStart(2, '0'); // добавляем ведущий ноль, если день < 10
+                        // const hours = String(date.getHours()).padStart(2, '0');
+                        // const minutes = String(date.getMinutes()).padStart(2, '0');
+                        // const seconds = String(date.getSeconds()).padStart(2, '0');
+
+                        // const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+                        // let t = toString(item.clock);
+                        // console.log(typeof item.clock)
+                        return {
+                            x: item.clock,
+                            y: item.value
+                        };
+                    }),
+                    
                     borderColor: 'red',
                     backgroundColor: 'rgba(255, 0, 0, 0.5)',
                 }
             ]
         };
-
+        
         this.chart = new Chart(chartRef, {
             type: 'line',
             data: datas,
@@ -85,7 +116,7 @@ class Graph extends Component {
                         type: 'linear',
                         beginAtZero: false,
                         stepSize: 50,
-                        max: max_y
+                        max: null
                     },
                     x: {
                         type: 'linear',
@@ -104,16 +135,32 @@ class Graph extends Component {
             <div>
             <form>
                 <div class="date">
-                    <InputCalendar/>
+                    {/* <InputCalendar/> */}
                     <div class="date_layout">
                     <GroupRange onButtonClick={(data) => {
-                        const from = DateConverter.getSubtractDates(new Date(), data); // data -> FORMAT [0,0,0,0,0,0]
-                        const dateFrom = DateConverter.getSeconds(from);
-                        const dateTo = DateConverter.getSeconds(new Date());
-                        this.state = {
-                            from: dateFrom,
-                            to: dateTo
-                        }
+                        console.log(data)
+                        this.range = data;
+                        this.runAutoUpdate();
+                        // const from = DateConverter.getSubtractDates(new Date(), data); // data -> FORMAT [0,0,0,0,0,0]
+                        // const dateFrom = DateConverter.getSeconds(from);
+                        // const dateTo = DateConverter.getSeconds(new Date());
+                        // AuthZab.getHistory(
+                        //     Cookies.get("itemType"),
+                        //     Cookies.get("itemId"),
+                        //     dateFrom,
+                        //     dateTo
+                        // ).then(response => {
+                        //     if (response) {
+                        //         // console.log(response);
+                        //         this.setState({
+                        //             data: response
+                        //         });
+                        //         this.componentDidMount();
+                        //     }
+                        // })
+                        // .catch(error => {
+                        //     console.error("Произошла ошибка:", error);
+                        // });
                     }} />
                     </div>
                 </div>

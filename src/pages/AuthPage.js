@@ -19,7 +19,7 @@ class AuthPage extends Page {
                         const l = document.getElementById("login").value;
                         const p = document.getElementById("password").value;
                         AuthZab.getAuthApi(l, p).then((response) => {
-                            console.log(typeof response)
+                            console.log(response);
                             if (typeof response != "undefined") {
                                 Cookies.set("auth", response);
 

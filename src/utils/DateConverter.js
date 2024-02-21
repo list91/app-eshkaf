@@ -18,7 +18,7 @@ class DateConverter{
     // передаю в виде Дате() верну СЕКУНДЫ (инт)
     static getSeconds(dateFormat){
         let sec = Math.floor(dateFormat / 1000);
-        sec -= 25200; // перевеодим время в местный формат
+        // sec -= 25200; // перевеодим время в местный формат
         return sec;
     }
 
@@ -29,7 +29,8 @@ class DateConverter{
 
     // передаем в виде Дате() и возвращаем в виде СПИСКА  
     static getCurrentDate(date) {
-        const currentDate = date || new Date();
+        const currentDate = new Date(date) || new Date();
+        // alert(typeof currentDate);
         const day = currentDate.getDate().toString().padStart(2, '0');
         const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
         const year = currentDate.getFullYear().toString();

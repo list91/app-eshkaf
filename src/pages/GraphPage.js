@@ -1,35 +1,41 @@
 import React from "react";
 import Graph from "../utils/data_visualization/Graph";
 import Auth from "../utils/Auth";
-class GraphPage extends React.Component{
+import Cookies from "js-cookie";
+import AuthZab from "../utils/AuthZab";
+import Page from "./Page"
+import DateConverter from "../utils/DateConverter";
+class GraphPage extends Page{
     constructor(props){
         super(props);
-        // alert(1);
-        this.data = [
-            // {"x": 0, "y": 1},
-            // {"x": 2, "y": 2},
-            // {"x": 4, "y": 3},
-            // {"x": 6, "y": 6},
-            // {"x": 8, "y": 7},
-            // {"x": 9, "y": 8},
-            // {"x": 13, "y": 9},
-            // {"x": 2, "y": 10}
-        ];
-        let dataV = null;
-        // let dataV = Auth.httpGet("/controller/meter/param/value")["data"];
-    //   for (let index = 0; index < dataV.length; index++) {
-    //     let point = {};
-    //     const element = dataV[index];
-    //     console.log(element["Name"]);
-    //     point["x"] = element["Time"]
-    //     point["y"] = element["Value"]
-    //     this.data.push(point);
-    //   }
+        this.state = {
+            arr: []
+        }
+        const from = DateConverter.getSubtractDates(new Date(), [0,0,0,1,0,0]); // data -> FORMAT [0,0,0,0,0,0]
+        const dateFrom = DateConverter.getSeconds(from);
+        const dateTo = DateConverter.getSeconds(new Date());
+
+        AuthZab.getHistory(
+            Cookies.get("itemType"),
+            Cookies.get("itemId"),
+            dateFrom,
+            dateTo
+        ).then(response => {
+            if (response) {
+                console.log(response);
+                this.setState({
+                    arr: response
+                })
+            }
+        })
+        .catch(error => {
+            console.error("Произошла ошибка:", error);
+        });
     }
 
     render(){
         return(
-            <Graph from="1" to="1" data={this.data}/>
+            <Graph data={this.state.arr}/>
         )
     }
 }

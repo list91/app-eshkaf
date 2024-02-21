@@ -4,43 +4,20 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import AuthZab from "../utils/AuthZab";
 // import Auth from "../utils/Auth";
-
+// import DateConverter from "../utils/DateConverter";
+ 
 class Page extends React.Component {
     constructor(props){
       super(props);
       AuthZab.getToken();
       
-      // console.log(data);
-      this.list = [
-        // "Щит распределительный ЩР-2.61.1",
-        // "Щит распределительный ЩР-2.61.2",
-        // "Щит распределительный ЩР-2.61.3",
-        // "Щит распределительный ЩР-2.61.4"
-      ];
-      // let data = Auth.httpGet("/controller/meter")["data"];
-      // for (let index = 0; index < data.length; index++) {
-      //   const element = data[index];
-      //   console.log(element["Name"]);
-      //   this.list.push(element["Name"]);
-      // }
-      this.list2 = [
-        // "Напряжение (RMS) на фазе L1",
-        // "Напряжение (RMS) на фазе L2",
-        // "Напряжение (RMS) на фазе L3",
-        // "Линейное напряжение между фазами L1-L2"
-      ];
-      // let dataParams = Auth.httpGet("/controller/meter/param")["data"];
-      // for (let index = 0; index < dataParams.length; index++) {
-      //   const element = dataParams[index];
-      //   console.log(element["Name"]);
-      //   this.list2.push(element["Name"]);
-      // }
-
+      this.list = [];
+      this.list2 = [];
     }
     
     getZebraList(list) {
         let togg_group = "toggle_power";
-        // const q = useNavigate();
+        // const q = touseNavigate();  4st-hT4-GYN-9rQ
         return (
           <ul className="zebra_list">
             {list.map((element, index) => (
@@ -62,36 +39,48 @@ class Page extends React.Component {
           </ul>
         );
       }
+      sendInfoItem(type, id){
+        Cookies.set("itemType", type)
+        Cookies.set("itemId", id)
+      }
       
       getZebraListParams(list) {
         const power = Cookies.get("power");
+return (
+  <ul className="zebra_list">
+    {list.map((element, index) => {
+      if (element.type == "0") {
         return (
-          <ul className="zebra_list">
-            {list.map((element, index) => (
-              <li className="zebra_item" key={index} >
-                <div className="zebra_item_mobile">
-                  {/* <ButtonDefault name="таблица" onClickAction={() => {
-                    alert(element+"  "+"таблица");
-                  }} /> */}
-                </div>
-                <div className="zebra_list_item_title">{element.name}</div>
-                <div className="zebra_list_item_buttons">
-                  <ButtonDefault name="график" href={`/${power}/monitoring/${element.name}/graph`} onClickAction={() => {
-                    // рисую батоны
-                    // рисую график (визуализацию)
-
-                    console.log(element.name+"  "+"график");
-                  }} />
-                  <ButtonDefault name="таблица" onClickAction={() => {
-                  // рисую батоны
-                  // рисую таблицу (визуализацию)
-                    console.log(element.name+"  "+"таблица");
-                  }} />
-                </div>
-              </li>
-            ))}
-          </ul>
+          <li className="zebra_item" key={index} >
+            <div className="zebra_item_mobile">
+              {/* <ButtonDefault name="таблица" onClickAction={() => {
+                alert(element+"  "+"таблица");
+              }} /> */}
+            </div>
+            <div className="zebra_list_item_title">{element.name}</div>
+            <div className="zebra_list_item_buttons">
+              <ButtonDefault name="график" onClickAction={() => {
+                this.sendInfoItem(element.type, element.itemid)
+                window.location.replace(`/${power}/monitoring/${element.name}/graph`)
+                // рисую батоны
+                // рисую график (визуализацию)
+                console.log(element.type+"  "+"график");
+              }} />
+              <ButtonDefault name="таблица" onClickAction={() => {
+                // рисую батоны
+                // рисую таблицу (визуализацию)
+                console.log(element.type+"  "+"таблица");
+              }} />
+            </div>
+          </li>
         );
+      } else {
+        return null; // либо вернуть другое значение или ничего, в зависимости от логики
+      }
+    })}
+  </ul>
+);
+
       }
 }
 export default Page;
