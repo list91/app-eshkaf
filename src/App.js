@@ -8,7 +8,7 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import GraphPage from './pages/GraphPage';
 import AuthPage from './pages/AuthPage';
-
+import TablePage from './pages/TablePage';
 Chart.register(CategoryScale);
 
 function App() {
@@ -26,10 +26,10 @@ function App() {
                   <Header/>
                   <div id='main-content'>
                     <Routes>
-                      <Route path="power" element={<Power />}/>
                       <Route path="power" element={<Power />} />
                       <Route path="/:power/monitoring" element={<Monitoring />} />
                       <Route path="/:power/monitoring/:param/graph" element={<GraphPage />} />
+                      <Route path="/:power/monitoring/:param/table" element={<TablePage />} />
                     </Routes>
                   </div>
                 </div>

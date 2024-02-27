@@ -141,26 +141,6 @@ class Graph extends Component {
                         console.log(data)
                         this.range = data;
                         this.runAutoUpdate();
-                        // const from = DateConverter.getSubtractDates(new Date(), data); // data -> FORMAT [0,0,0,0,0,0]
-                        // const dateFrom = DateConverter.getSeconds(from);
-                        // const dateTo = DateConverter.getSeconds(new Date());
-                        // AuthZab.getHistory(
-                        //     Cookies.get("itemType"),
-                        //     Cookies.get("itemId"),
-                        //     dateFrom,
-                        //     dateTo
-                        // ).then(response => {
-                        //     if (response) {
-                        //         // console.log(response);
-                        //         this.setState({
-                        //             data: response
-                        //         });
-                        //         this.componentDidMount();
-                        //     }
-                        // })
-                        // .catch(error => {
-                        //     console.error("Произошла ошибка:", error);
-                        // });
                     }} />
                     </div>
                 </div>

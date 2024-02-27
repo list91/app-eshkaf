@@ -3,14 +3,13 @@ import ButtonDefault from "../components/common/buttons/ButtonDefault";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import AuthZab from "../utils/AuthZab";
-// import Auth from "../utils/Auth";
-// import DateConverter from "../utils/DateConverter";
  
 class Page extends React.Component {
     constructor(props){
       super(props);
       AuthZab.getToken();
-      
+      // alert(document.getElementById("content1"));
+      // document.getElementById("content1").textContent = Cookies.get("usr");
       this.list = [];
       this.list2 = [];
     }
@@ -23,7 +22,6 @@ class Page extends React.Component {
             {list.map((element, index) => (
               <li className="zebra_list_item"  key={index} >
                 <div className="mobile_power">
-                  {/* <ButtonDefault name="выбрать" toggle={true}/> */}
                 </div>
                 <div className="zebra_list_item_title">{element.host}</div>
                 <div className="zebra_list_item_buttons">
@@ -66,7 +64,8 @@ return (
                 // рисую график (визуализацию)
                 console.log(element.type+"  "+"график");
               }} />
-              <ButtonDefault name="таблица" onClickAction={() => {
+            <ButtonDefault name="таблица" onClickAction={() => {
+                window.location.replace(`/${power}/monitoring/${element.name}/table`);
                 // рисую батоны
                 // рисую таблицу (визуализацию)
                 console.log(element.type+"  "+"таблица");

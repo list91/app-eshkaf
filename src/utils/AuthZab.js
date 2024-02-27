@@ -2,14 +2,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom"
 import { withRouter } from 'react-router';
 class AuthZab {
-    // constructor() {
-    //   this.historyMethod = "history.get";
-    //   this.userMethod = "user.login";
-    //   this.itemMethod = "item.get";
-    //   this.hostMethod = "host.get";      
-    //   this.URL = "http://194.58.94.47/zabbix/api_jsonrpc.php";
-    //   this.request = new XMLHttpRequest();
-    // }
+
 
     // Client_Stanislav
     // 6'E4+~B3Rvf-*wup
@@ -64,6 +57,7 @@ class AuthZab {
       }).catch((error) => {});
       return q;   
     }
+    
     static async getItems(hostid){
       let q = this.getResponse("item.get", {
         output: "extend",

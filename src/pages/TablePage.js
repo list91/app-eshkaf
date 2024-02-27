@@ -1,24 +1,39 @@
 import React from "react";
 import Table from "../utils/data_visualization/Table"
+import Cookies from "js-cookie";
+import AuthZab from "../utils/AuthZab";
+import DateConverter from "../utils/DateConverter";
 class TablePage extends React.Component{
     constructor(props){
         super(props);
-        this.data = [
-            {"x": 0, "y": 1},
-            {"x": 2, "y": 2},
-            {"x": 4, "y": 3},
-            {"x": 6, "y": 6},
-            {"x": 8, "y": 7},
-            {"x": 9, "y": 8},
-            {"x": 13, "y": 9},
-            {"x": 2, "y": 10}
-        ];
+        this.state = {
+            arr: []
+        }
+        const from = DateConverter.getSubtractDates(new Date(), [0,0,0,1,0,0]); // data -> FORMAT [0,0,0,0,0,0]
+        const dateFrom = DateConverter.getSeconds(from);
+        const dateTo = DateConverter.getSeconds(new Date());
+
+        AuthZab.getHistory(
+            Cookies.get("itemType"),
+            Cookies.get("itemId"),
+            dateFrom,
+            dateTo
+        ).then(response => {
+            if (response) {
+                console.log(response);
+                this.setState({
+                    arr: response
+                })
+            }
+        })
+        .catch(error => {
+            console.error("Произошла ошибка:", error);
+        });
     }
 
     render(){
         return(
-            <Table from="1" to="1" data={this.data}/>
-            // <Graph from="1" to="1" data={this.data}/>
+            <Table from="1" to="1" data={this.state.arr}/>
         )
     }
 }

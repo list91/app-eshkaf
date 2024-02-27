@@ -18,7 +18,7 @@ class DateConverter{
     // передаю в виде Дате() верну СЕКУНДЫ (инт)
     static getSeconds(dateFormat){
         let sec = Math.floor(dateFormat / 1000);
-        // sec -= 25200; // перевеодим время в местный формат
+        sec -= 25200; // перевеодим время в местный формат
         return sec;
     }
 

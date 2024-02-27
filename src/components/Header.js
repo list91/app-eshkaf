@@ -10,7 +10,7 @@ class Header extends React.Component {
         
     return (
                <header>
-                    <Label title1="объект" title2="нагрузка" content2={Cookies.get("power")} />
+                    <Label title1="объект" title2="нагрузка" content1={Cookies.get("usr")} content2={Cookies.get("power")} />
                     <div class="header_menu">                    
                         <nav>
                             <ButtonDefault name="выбрать нагрузку" href="/power"/>

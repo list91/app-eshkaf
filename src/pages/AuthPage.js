@@ -22,7 +22,8 @@ class AuthPage extends Page {
                             console.log(response);
                             if (typeof response != "undefined") {
                                 Cookies.set("auth", response);
-
+                                Cookies.set("usr", l);
+                                // alert(l);
                                 window.location.replace("/power");                                
                             }
                         })
