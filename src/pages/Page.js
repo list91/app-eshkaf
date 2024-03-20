@@ -47,7 +47,7 @@ class Page extends React.Component {
 return (
   <ul className="zebra_list">
     {list.map((element, index) => {
-      if (element.type == "0") {
+      if (element.type == "0" || element.type == "2") {
         return (
           <li className="zebra_item" key={index} >
             <div className="zebra_item_mobile">

@@ -85,14 +85,14 @@ class AuthZab {
 
     static async getResponse(method, params) {
       let api = this.getToken();
-      // this.URL = "http://192.168.0.160/zabbix/api_jsonrpc.php";
-      this.URL = "http://194.58.94.47/zabbix/api_jsonrpc.php";
-      const requestData = {
-        jsonrpc: '2.0',
-        method: method,
-        params: params,
-        id: 1,
-        auth: api,
+      this.URL = "http://10.0.0.100/zabbix/api_jsonrpc.php";
+      //this.URL = "http://194.58.94.47/zabbix/api_jsonrpc.php";
+        const requestData = {
+            jsonrpc: '2.0',
+            method: method,
+            params: params,
+            id: 1,
+            auth: api,
       };
       console.log(requestData);
       const data = await this.getPromis(requestData, this.URL);

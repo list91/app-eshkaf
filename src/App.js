@@ -16,6 +16,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          
           <Route path="login" element={<AuthPage />} />
           <Route 
             path="/*"
